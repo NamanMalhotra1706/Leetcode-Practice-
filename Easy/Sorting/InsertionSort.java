@@ -1,4 +1,4 @@
-public class InsertionSort {
+ public class InsertionSort {
 
     // We suppose 1st element Sorted hai
     public static void InsertionSort(int arr[]){
