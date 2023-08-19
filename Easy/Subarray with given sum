@@ -1,0 +1,45 @@
+static ArrayList<Integer> subarraySum(int[] arr, int n, int sum) 
+    {
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        int currentSum=arr[0];
+        int start=0;
+        int end=0;
+        
+        boolean isFound = false;
+        
+        while(end < n){
+            
+            if(sum==0){
+                break;
+            }
+            
+            if(currentSum == sum){
+                isFound=true;
+                break;
+            }
+            
+            else if(currentSum < sum){
+                end++;
+                if(end<n){
+                    currentSum+=arr[end];
+                }
+            }
+            else{
+                currentSum -= arr[start];
+                start++;
+            }
+        }
+        
+        
+        if(isFound){
+            list.add(start+1);
+            list.add(end+1);
+            return list;
+        }
+        else{
+            list.add(-1);
+        }
+        return list;
+    }
