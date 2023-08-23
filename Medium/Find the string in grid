@@ -1,0 +1,49 @@
+public int[][] searchWord(char[][] grid, String word){
+    int n = grid.length;
+        int m = grid[0].length;
+        int wordLen = word.length();
+        
+        List<int[]> result = new ArrayList<>();
+        
+        // Define the eight possible directions (dx, dy)
+        int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+        int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
+        
+        // Iterate through the grid
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                
+                // If the current cell matches the first character of the word, try all directions
+                if (grid[i][j] == word.charAt(0)) {
+                    
+                    // Check each direction
+                    for (int dir = 0; dir < 8; dir++) {
+                        int x = i;
+                        int y = j;
+                        int index = 0;
+                        
+                        // Check if the word can be formed in this direction
+                        while (index < wordLen && x >= 0 && x < n && y >= 0 && y < m && grid[x][y] == word.charAt(index)) {
+                            x += dx[dir];
+                            y += dy[dir];
+                            index++;
+                        }
+                        
+                        // If the entire word is found, add the starting position
+                        if (index == wordLen) {
+                            result.add(new int[]{i, j});
+                            break; // Exit the direction loop
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Convert the list of results to a 2D array
+        int[][] resultArray = new int[result.size()][2];
+        for (int i = 0; i < result.size(); i++) {
+            resultArray[i] = result.get(i);
+        }
+        
+        return resultArray;
+    }
