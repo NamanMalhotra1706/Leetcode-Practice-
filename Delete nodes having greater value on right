@@ -1,0 +1,22 @@
+ Node compute(Node head)
+    {
+     head=help(head);
+        Node temp=head;
+        while(temp.next!=null){
+            temp.next=help(temp.next);
+            temp=temp.next;
+        }
+        return head;
+    }
+    
+    Node help(Node root){
+        Node temp=root;
+        if(root.next==null) return root;
+        Node max=temp.next;
+        while(temp!=null){
+            if(temp.data>max.data)
+                max=temp;
+            else temp=temp.next;
+        }
+        return max;
+    }
