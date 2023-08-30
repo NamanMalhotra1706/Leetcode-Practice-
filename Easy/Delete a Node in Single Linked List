@@ -1,0 +1,26 @@
+Node current = head;
+	
+	int count=1;
+	
+	if(x==1){
+	    return head.next;
+	}
+	
+	while(count!=x-1){
+	    current = current.next;
+	    count++;
+	}
+	
+	
+	
+	if(current.next.next == null){
+	    current.next=null;
+	}
+	
+	else{
+	    current.next = current.next.next;
+	}
+	
+	return head;
+	
+    }
