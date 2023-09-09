@@ -1,0 +1,19 @@
+ static void largest(Node root, ArrayList<Integer>list){
+        if(root==null){
+            return;
+        }
+        list.add(root.data);
+        largest(root.left,list);
+        largest(root.right,list);
+        
+    }
+    public int kthLargest(Node root,int K)
+    {
+    
+        ArrayList<Integer>list= new ArrayList<>();
+        largest(root,list);
+        Collections.sort(list);
+        
+        return list.get(list.size()-K);
+        
+    }
