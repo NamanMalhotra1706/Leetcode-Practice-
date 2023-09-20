@@ -1,0 +1,18 @@
+ArrayList<Integer> rotate(int N, int D)
+    {
+       int n = N;
+        int filter = 65535;
+        ArrayList<Integer> res = new ArrayList<>();
+        D %= 16;
+        int num1 = N>>(16-D);
+        N = N<<D;
+        N = N&filter;
+        res.add(N|num1);
+        
+        
+        int num2 = n>>D;
+        n = n << (16-D);
+        n = n&filter;
+        res.add(n|num2);
+        return res;
+    }
