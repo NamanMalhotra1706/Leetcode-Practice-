@@ -1,0 +1,17 @@
+ public int FindMaxSum(int arr[], int n)
+    {
+      if(arr==null) return 0;
+        if(n==1) return arr[0];
+        int[] dp=new int[n];
+        Arrays.fill(dp,-1);
+        return findSum(arr,n-1,n,dp);
+    }
+    
+    static int findSum(int[] arr, int i, int n, int[] dp){
+        if(i<0) return 0;
+        if(dp[i]!=-1)return dp[i];
+        int take=arr[i]+findSum(arr,i-2,n,dp);
+        int notTake=0+findSum(arr,i-1,n,dp);
+        
+        return dp[i]=Math.max(take,notTake);
+    }
