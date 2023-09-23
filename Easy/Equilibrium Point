@@ -1,0 +1,21 @@
+public static int equilibriumPoint(long arr[], int n) {
+
+        if(n==1)
+        return 1;
+        
+        long sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum+=arr[i];
+        }
+        long temp=0;
+     
+        for(int i=0;i<n;i++)
+        {
+            temp+=arr[i];
+            if(temp==sum)
+            return i+1;
+            sum=sum-arr[i];
+        }
+        return -1;
+    }
