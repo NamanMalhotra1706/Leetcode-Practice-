@@ -1,0 +1,41 @@
+
+
+class Solution {
+    public static ArrayList<Integer> duplicates(int arr[], int n) {
+        
+        
+        HashMap<Integer,Integer> map = new HashMap<>();
+        
+        for(int i=0;i<n;i++){
+            if(map.containsKey(arr[i])){
+                map.put(arr[i],map.get(arr[i])+1);
+            }
+            else{
+                map.put(arr[i],1);
+            }
+        }
+        
+    
+        
+        ArrayList<Integer> dupl = new ArrayList<>();
+        
+        for(Map.Entry<Integer,Integer> mp : map.entrySet()){
+            
+            if(mp.getValue() > 1){
+                dupl.add(mp.getKey());
+            }
+        }
+        
+        
+        Collections.sort(dupl);
+       
+       if(dupl.size() > 0){
+        return dupl;
+       }
+       else{
+           dupl.add(-1);
+       }
+       return dupl;
+        
+    }
+}
