@@ -1,0 +1,41 @@
+public ArrayList<ArrayList<Integer>> fourSum(int[] arr, int k) {
+        Arrays.sort(arr);
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        int n = arr.length;
+        if(n <= 3) //If n is less than or equal to 3 always empty return the arraylist
+            return ans;
+        for(int i = 0;i<n-3;i++){
+            if(i > 0 && arr[i] == arr[i-1])
+                continue;
+            for(int j = i+1; j < n-2;j++){
+                if(j > i+1 && arr[j] == arr[j-1])
+                    continue;
+                int low = j+1;
+                int high = n-1;
+                
+                while(low < high){
+                    int sum = arr[low] + arr[high] + arr[i] + arr[j];
+                    if(sum < k)
+                        low++;
+                    else if(sum > k)
+                        high--;
+                    else{
+                        
+                        ArrayList<Integer> temp = new ArrayList<>();
+                        temp.add(arr[i]);
+                        temp.add(arr[j]);
+                        temp.add(arr[low]);
+                        temp.add(arr[high]);
+                        ans.add(temp); //Adding this created arraylist to the answer
+                       
+                        while(low < high && arr[low] == arr[low + 1]) low++;
+                        while(low < high && arr[high] == arr[high-1]) high--;
+                        low++;
+                        high--;
+                    }
+                }
+            }
+        }
+        
+        return ans;
+        }
