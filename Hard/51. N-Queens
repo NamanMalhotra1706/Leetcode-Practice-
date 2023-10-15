@@ -1,0 +1,85 @@
+ public  List<String> display(boolean arr[][]){
+
+        List<String> li = new ArrayList<>();
+
+        for(int row=0;row<arr.length;row++){
+            String str = "";
+            for(int col=0;col<arr[0].length;col++){
+                if(arr[row][col]){
+                    str+="Q";
+                    // System.out.print("Q");
+                }
+                else{
+                    str+=".";
+                    // System.out.print("_");
+                }
+            }
+            // System.out.println();
+            li.add(str);
+        }
+        return li;
+    }
+
+
+    public  boolean isSafe(boolean arr[][],int row,int col){
+
+        int R = row;
+        int C = col;
+
+        // Upward Direction
+        while(R>=0){
+            if(arr[R][C]==true){
+                return false;
+            }
+            R--;
+        }
+        R=row;
+        C=col;
+        // Diagonal
+        while(R>=0 && C>=0){
+            if(arr[R][C]==true){
+                return false;
+            }
+
+            R--;
+            C--;
+        }
+         R=row;
+        C=col;
+        // Diagonal
+        while(R>=0 && C<arr.length){
+            if(arr[R][C]==true){
+                return false;
+            }
+            R--;
+            C++;
+        }
+         R=row;
+        C=col;
+    return true;
+    }
+   
+
+    public  List<List<String>> li = new ArrayList<>();
+    public  void Queens(boolean arr[][],int nQueen,int row){
+        if(nQueen==0){
+            li.add(display(arr));
+            return;
+        }
+
+        for(int col=0;col<arr[0].length;col++){
+            if(arr[row][col] == false && isSafe(arr,row,col)){
+                arr[row][col]=true;
+                Queens(arr, nQueen-1, row+1);
+                arr[row][col]=false;
+            }
+        }
+    }
+
+    public List<List<String>> solveNQueens(int n) {
+                int nQueen = n;
+        boolean arr[][] = new boolean[n][n];
+       Queens(arr, nQueen,0);
+
+       return li;
+    }
