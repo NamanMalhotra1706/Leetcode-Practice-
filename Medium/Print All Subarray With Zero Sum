@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class SubArrayWithZero {
+    public static void helper(int arr[],int i,int j){
+
+        for(int a=i;a<=j;a++){
+            System.out.print(arr[a]+" ");
+        }
+        System.out.println();
+    }
+
+    public static void subArrays(int[] num){
+    
+
+        for(int i=0;i<num.length;i++){
+            int sum=0;
+            for(int j=i;j<num.length;j++){
+                sum+=num[j];
+                if(sum==0){
+                    helper(num,i,j);
+                }
+            }
+            
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String[] num = str.split(" ");
+
+        int [] item = new int[num.length];
+
+        for(int i=0;i<item.length;i++){
+            item[i] = Integer.parseInt(num[i]);
+        }
+
+        subArrays(item);
+    }
+}
