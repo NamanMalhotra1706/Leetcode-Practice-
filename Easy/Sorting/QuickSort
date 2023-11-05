@@ -1,0 +1,44 @@
+public class QuickSortPract {
+
+    public static int pivotIndex(int arr[],int low,int high){
+        int pivotEle = arr[high];
+        int i=low;
+        int j=low;
+        while(i<=high-1){
+            if(arr[i]<=pivotEle){
+                int temp=arr[j];
+                arr[j]=arr[i];
+                arr[i]=temp;
+                j++;
+            }
+            i++;
+        }
+        //Change pivotEle with pivot Index Element
+            int temp = arr[high];
+            arr[high] = arr[j];
+            arr[j] = temp;
+        return j;
+    }
+
+    public static void QuickSort(int arr[],int low,int high){
+        if(low>=high){
+            return;
+        }
+        int idx = pivotIndex(arr, low, high);
+        QuickSort(arr, low, idx-1);
+        QuickSort(arr, idx+1, high);
+    }
+    public static void main(String[] args) {
+    
+        int arr [] = {9,8,6,4,2,1,2,4,5,6,7,4};
+    
+        System.out.println(pivotIndex(arr,0,arr.length-1));
+
+        QuickSort(arr, 0, arr.length-1);
+
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+
+    }
+}
