@@ -1,0 +1,18 @@
+public class SlidingWindowApp {
+    public static void main(String[] args) {
+        int arr[] = {1,2,3,4,9,8,7,9,9,9,2,1,9};
+        int length = 3;
+        int sum=0;
+        for(int i=0;i<length;i++){
+            sum+=arr[i];
+        }
+        int maxi=sum;
+        for(int i=length;i<arr.length;i++){
+            sum+=arr[i];
+            sum-=arr[i-length];
+            maxi=Math.max(maxi,sum);
+        }
+
+        System.out.println("Maximum: "+maxi);
+    }
+}
