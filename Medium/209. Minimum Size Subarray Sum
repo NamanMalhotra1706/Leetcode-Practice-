@@ -1,0 +1,48 @@
+class Solution {
+
+    public static Boolean SearchWindow(int nums[],int mid,int target){
+        int length = mid;
+        int sum=0;
+        for(int i=0;i<length;i++){
+            sum+=nums[i];
+        }
+        if(sum>=target){
+            return true;
+        }
+        for(int i=length;i<nums.length;i++){
+            sum+=nums[i];
+            sum-=nums[i-length];
+            if(sum>=target){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public static int BinarySearch(int nums[],int start,int end,int target,int ans){
+        int st = start;
+        int en = end;
+
+        while(st<=en){
+            int mid = st+(en-st)/2;
+            
+            if(SearchWindow(nums,mid,target)){
+                ans=mid;
+                en=mid-1;
+            }
+            else{
+                st=mid+1;
+            }
+        }
+        return ans;       
+        
+    }
+    public int minSubArrayLen(int target, int[] nums) { 
+
+        int start=1;
+        int end=nums.length;
+        int ans=0;
+       return BinarySearch(nums,start,end,target,ans);
+    }
+}
