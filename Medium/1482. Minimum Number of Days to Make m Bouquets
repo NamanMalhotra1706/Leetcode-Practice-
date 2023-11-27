@@ -1,0 +1,37 @@
+public boolean isPossible(int arr[],int mid,int m,int k){
+        int adjFlower=0;
+        int boqMade=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]<=mid){
+               adjFlower++;
+            }
+            else{
+                boqMade+=adjFlower/k;
+                adjFlower=0;
+            }
+        }
+         boqMade+=adjFlower/k;
+        return boqMade>=m;
+    }
+    public int minDays(int[] bloomDay, int m, int k) {
+        int low = bloomDay[0];
+        int high = bloomDay[0];
+
+        for(int i=0;i<bloomDay.length;i++){
+            low = Math.min(bloomDay[i],low);
+            high = Math.max(bloomDay[i],high);
+        }
+
+        int ans = -1;
+        while(low<=high){
+            int mid  = low+(high-low)/2;
+            if(isPossible(bloomDay,mid,m,k)){
+                ans=mid;
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
